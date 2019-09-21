@@ -13,6 +13,9 @@
 		FBC3155023361D9000D039DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBC3154F23361D9000D039DF /* Assets.xcassets */; };
 		FBC3155323361D9000D039DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBC3155123361D9000D039DF /* LaunchScreen.storyboard */; };
 		FBC3155623361D9000D039DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC3155523361D9000D039DF /* main.m */; };
+		FBC3156323361DDA00D039DF /* UILabel+JXMake.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC3155D23361DD900D039DF /* UILabel+JXMake.m */; };
+		FBC3156423361DDA00D039DF /* JXAttributeText.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC3155F23361DD900D039DF /* JXAttributeText.m */; };
+		FBC3156523361DDA00D039DF /* JXTextMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = FBC3156023361DDA00D039DF /* JXTextMaker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,12 @@
 		FBC3155223361D9000D039DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FBC3155423361D9000D039DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBC3155523361D9000D039DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FBC3155D23361DD900D039DF /* UILabel+JXMake.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+JXMake.m"; sourceTree = "<group>"; };
+		FBC3155E23361DD900D039DF /* JXAttributeText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXAttributeText.h; sourceTree = "<group>"; };
+		FBC3155F23361DD900D039DF /* JXAttributeText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXAttributeText.m; sourceTree = "<group>"; };
+		FBC3156023361DDA00D039DF /* JXTextMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JXTextMaker.m; sourceTree = "<group>"; };
+		FBC3156123361DDA00D039DF /* JXTextMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JXTextMaker.h; sourceTree = "<group>"; };
+		FBC3156223361DDA00D039DF /* UILabel+JXMake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+JXMake.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +67,7 @@
 		FBC3154523361D8F00D039DF /* LabelMaker */ = {
 			isa = PBXGroup;
 			children = (
+				FBC3155C23361DAF00D039DF /* Source */,
 				FBC3154623361D8F00D039DF /* AppDelegate.h */,
 				FBC3154723361D8F00D039DF /* AppDelegate.m */,
 				FBC3154923361D8F00D039DF /* ViewController.h */,
@@ -69,6 +79,19 @@
 				FBC3155523361D9000D039DF /* main.m */,
 			);
 			path = LabelMaker;
+			sourceTree = "<group>";
+		};
+		FBC3155C23361DAF00D039DF /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				FBC3155E23361DD900D039DF /* JXAttributeText.h */,
+				FBC3155F23361DD900D039DF /* JXAttributeText.m */,
+				FBC3156123361DDA00D039DF /* JXTextMaker.h */,
+				FBC3156023361DDA00D039DF /* JXTextMaker.m */,
+				FBC3156223361DDA00D039DF /* UILabel+JXMake.h */,
+				FBC3155D23361DD900D039DF /* UILabel+JXMake.m */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,7 +164,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBC3156323361DDA00D039DF /* UILabel+JXMake.m in Sources */,
+				FBC3156523361DDA00D039DF /* JXTextMaker.m in Sources */,
 				FBC3154B23361D8F00D039DF /* ViewController.m in Sources */,
+				FBC3156423361DDA00D039DF /* JXAttributeText.m in Sources */,
 				FBC3155623361D9000D039DF /* main.m in Sources */,
 				FBC3154823361D8F00D039DF /* AppDelegate.m in Sources */,
 			);
