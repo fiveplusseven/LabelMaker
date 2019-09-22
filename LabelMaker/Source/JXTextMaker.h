@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (JXAttributeText * (^)(NSString *))text;
 
 - (NSAttributedString *)pack;
+- (NSArray<NSString *> *)tapList;
 
 @end
 

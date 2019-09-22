@@ -11,9 +11,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol JXMakeTapActionDelegate <NSObject>
+@end
+
 @interface UILabel (JXMake)
 
 - (void)jx_make:(void (^)(JXTextMaker *make))block;
+
+/**
+ If a tap action is set, deleagte needs to be set for message dispatch.
+ */
+@property (nonatomic, weak) id<JXMakeTapActionDelegate> jx_tapDelegate;
 
 @end
 

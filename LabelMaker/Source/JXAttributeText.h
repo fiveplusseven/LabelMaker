@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (JXAttributeText * (^)(CGFloat fontSize))font;
 - (JXAttributeText * (^)(UIColor *textColor))color;
+- (JXAttributeText * (^)(SEL selector))tap;
 
 - (NSAttributedString *)apply;
 

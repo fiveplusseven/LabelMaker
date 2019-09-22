@@ -44,6 +44,15 @@ return self; \
     });
 }
 
+- (JXAttributeText * _Nonnull (^)(SEL _Nonnull))tap {
+    kChainImplement(SEL selector, {
+        NSString *urlStr = [NSString stringWithFormat:@"jx://tap?selector=%@&str=%@", NSStringFromSelector(selector), self.str];
+        urlStr = [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        [self.attributes setObject:urlStr forKey:NSLinkAttributeName];
+        [self.attributes setObject:@(NSUnderlineStyleSingle) forKey:NSUnderlineStyleAttributeName];
+    });
+}
+
 - (NSAttributedString *)apply {
     NSAttributedString *as = [[NSAttributedString alloc] initWithString:self.str attributes:self.attributes];
     return as;
