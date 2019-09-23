@@ -13,7 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JXTextMaker : NSObject
 
-- (JXAttributeText * (^)(NSString *))text;
+- (JXAttributeText * (^)(NSString *str))text;
+- (JXAttributeText * (^)(NSString *str, NSString *icon))attachmentText;
 
 - (NSAttributedString *)pack;
 - (NSArray<NSString *> *)tapList;

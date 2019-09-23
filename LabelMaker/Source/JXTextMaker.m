@@ -28,7 +28,15 @@
 
 - (JXAttributeText * _Nonnull (^)(NSString * _Nonnull))text {
     return ^JXAttributeText *(NSString *text) {
-        JXAttributeText *at = [[JXAttributeText alloc] initWithText:text];
+        JXAttributeText *at = [[JXAttributeText alloc] initWithText:text icon:nil];
+        [self.components addObject:at];
+        return at;
+    };
+}
+
+- (JXAttributeText * _Nonnull (^)(NSString * _Nonnull, NSString * _Nonnull))attachmentText {
+    return ^JXAttributeText *(NSString *text, NSString *icon) {
+        JXAttributeText *at = [[JXAttributeText alloc] initWithText:text icon:icon];
         [self.components addObject:at];
         return at;
     };

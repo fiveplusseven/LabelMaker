@@ -12,11 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JXAttributeText : NSObject
 
-- (instancetype)initWithText:(NSString *)text;
+- (instancetype)initWithText:(NSString *)text icon:(nullable NSString *)icon;
 
 - (JXAttributeText * (^)(CGFloat fontSize))font;
 - (JXAttributeText * (^)(UIColor *textColor))color;
 - (JXAttributeText * (^)(SEL selector))tap;
+- (JXAttributeText * (^)(CGFloat y))attachmentY;
 
 - (NSAttributedString *)apply;
 

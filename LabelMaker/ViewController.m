@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) UILabel *labelOne;
 @property (nonatomic, strong) UILabel *labelTwo;
+@property (nonatomic, strong) UILabel *labelThree;
+
 @end
 
 @implementation ViewController
@@ -54,6 +56,19 @@
     }];
 }
 
+- (void)attachmentUsage {
+    [self.view addSubview:self.labelThree];
+
+    [[self.labelThree.topAnchor constraintEqualToAnchor:self.labelTwo.bottomAnchor constant:20] setActive:YES];
+    [[self.labelThree.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:20] setActive:YES];
+    [[self.labelThree.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor] setActive:YES];
+
+    [self.labelThree jx_make:^(JXTextMaker * _Nonnull make) {
+        make.attachmentText(@"one two three blabla", @"me_honor_rule_prefix_icon").font(14).color([UIColor blackColor]).attachmentY(-2);
+        make.text(@"xxxxxxxxx").font(20).color([UIColor purpleColor]);
+    }];
+}
+
 - (void)clickPhoneNumber:(NSString *)phone {
     NSLog(@"tap tap => %@", phone);
 }
@@ -63,6 +78,7 @@
     
     [self basicUsage];
     [self tapUsage];
+    [self attachmentUsage];
 }
 
 #pragma mark - getter and setter
@@ -82,5 +98,13 @@
         _labelTwo.jx_tapDelegate = self;
     }
     return _labelTwo;
+}
+
+- (UILabel *)labelThree {
+    if (_labelThree == nil) {
+        _labelThree = [UILabel new];
+        _labelThree.translatesAutoresizingMaskIntoConstraints = NO;
+    }
+    return _labelThree;
 }
 @end

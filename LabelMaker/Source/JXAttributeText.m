@@ -16,6 +16,8 @@ return self; \
 
 @interface JXAttributeText ()
 
+@property (nonatomic, assign) CGFloat offsetY;
+@property (nonatomic, copy) NSString *icon;
 @property (nonatomic, copy) NSString *str;
 
 @property (nonatomic, strong) NSMutableDictionary<NSAttributedStringKey, id> *attributes;
@@ -24,10 +26,12 @@ return self; \
 
 @implementation JXAttributeText
 
-- (instancetype)initWithText:(NSString *)text {
+- (instancetype)initWithText:(NSString *)text icon:(nullable NSString *)icon {
     self = [super init];
     if (self) {
+        self.offsetY = 0;
         self.str = text;
+        self.icon = icon;
     }
     return self;
 }
@@ -53,9 +57,27 @@ return self; \
     });
 }
 
+- (JXAttributeText * _Nonnull (^)(CGFloat))attachmentY {
+    kChainImplement(CGFloat y, {
+        self.offsetY = y;
+    });
+}
+
 - (NSAttributedString *)apply {
+    if (!self.icon) {
+        return [[NSAttributedString alloc] initWithString:self.str attributes:self.attributes];
+    }
+
+    NSTextAttachment *ta = [[NSTextAttachment alloc] init];
+    CGSize size = [self getAttachmentSize];
+    ta.bounds = CGRectMake(0, self.offsetY, size.width, size.height);
+    ta.image = [UIImage imageNamed:self.icon];
+    
+    NSMutableAttributedString *mas = [[NSAttributedString attributedStringWithAttachment:ta] mutableCopy];
     NSAttributedString *as = [[NSAttributedString alloc] initWithString:self.str attributes:self.attributes];
-    return as;
+    [mas appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+    [mas appendAttributedString:as];
+    return [mas copy];
 }
 
 #pragma mark - getter and setter
@@ -64,6 +86,12 @@ return self; \
         _attributes = [NSMutableDictionary dictionary];
     }
     return _attributes;
+}
+
+- (CGSize)getAttachmentSize {
+    UIImage *img = [UIImage imageNamed:self.icon];
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:img];
+    return imgView.intrinsicContentSize;
 }
 
 @end
