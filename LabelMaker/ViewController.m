@@ -64,8 +64,8 @@
     [[self.labelThree.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor] setActive:YES];
 
     [self.labelThree jx_make:^(JXTextMaker * _Nonnull make) {
-        make.attachmentText(@"one two three blabla", @"me_honor_rule_prefix_icon").font(14).color([UIColor blackColor]).attachmentY(-2);
-        make.text(@"xxxxxxxxx").font(20).color([UIColor purpleColor]);
+        make.attachmentText(@"one two three blabla", @"me_honor_rule_prefix_icon").font(14).color([UIColor blackColor]).attachmentY(-2).attachmentPos(JXAttributeTextAttachmentPosRight);
+        make.text(@" xxxxxxxxx").font(20).color([UIColor purpleColor]);
     }];
 }
 

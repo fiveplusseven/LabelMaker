@@ -16,6 +16,7 @@ return self; \
 
 @interface JXAttributeText ()
 
+@property (nonatomic, assign) JXAttributeTextAttachmentPos pos;
 @property (nonatomic, assign) CGFloat offsetY;
 @property (nonatomic, copy) NSString *icon;
 @property (nonatomic, copy) NSString *str;
@@ -63,6 +64,12 @@ return self; \
     });
 }
 
+- (JXAttributeText * _Nonnull (^)(JXAttributeTextAttachmentPos))attachmentPos {
+    kChainImplement(JXAttributeTextAttachmentPos pos, {
+        self.pos = pos;
+    });
+}
+
 - (NSAttributedString *)apply {
     if (!self.icon) {
         return [[NSAttributedString alloc] initWithString:self.str attributes:self.attributes];
@@ -73,11 +80,19 @@ return self; \
     ta.bounds = CGRectMake(0, self.offsetY, size.width, size.height);
     ta.image = [UIImage imageNamed:self.icon];
     
-    NSMutableAttributedString *mas = [[NSAttributedString attributedStringWithAttachment:ta] mutableCopy];
-    NSAttributedString *as = [[NSAttributedString alloc] initWithString:self.str attributes:self.attributes];
-    [mas appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
-    [mas appendAttributedString:as];
-    return [mas copy];
+    if (self.pos == JXAttributeTextAttachmentPosLeft) {
+        NSMutableAttributedString *mas = [[NSAttributedString attributedStringWithAttachment:ta] mutableCopy];
+        NSAttributedString *as = [[NSAttributedString alloc] initWithString:self.str attributes:self.attributes];
+        [mas appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+        [mas appendAttributedString:as];
+        return [mas copy];
+    } else {
+        NSMutableAttributedString *mas = [[[NSAttributedString alloc] initWithString:self.str attributes:self.attributes] mutableCopy];
+        NSAttributedString *attchmentAs = [NSAttributedString attributedStringWithAttachment:ta];
+        [mas appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+        [mas appendAttributedString:attchmentAs];
+        return [mas copy];
+    }
 }
 
 #pragma mark - getter and setter

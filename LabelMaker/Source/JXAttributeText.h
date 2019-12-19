@@ -10,6 +10,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, JXAttributeTextAttachmentPos) {
+    JXAttributeTextAttachmentPosLeft,
+    JXAttributeTextAttachmentPosRight,
+};
+
 @interface JXAttributeText : NSObject
 
 - (instancetype)initWithText:(NSString *)text icon:(nullable NSString *)icon;
@@ -18,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (JXAttributeText * (^)(UIColor *textColor))color;
 - (JXAttributeText * (^)(SEL selector))tap;
 - (JXAttributeText * (^)(CGFloat y))attachmentY;
+- (JXAttributeText * (^)(JXAttributeTextAttachmentPos pos))attachmentPos;
 
 - (NSAttributedString *)apply;
 
