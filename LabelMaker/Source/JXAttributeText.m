@@ -14,6 +14,12 @@ __VA_ARGS__ \
 return self; \
 };
 
+#define kChainTwoParmsImplment(p1, p2, ...) \
+return ^id(p1, p2) { \
+__VA_ARGS__ \
+return self; \
+};
+
 @interface JXAttributeText ()
 
 @property (nonatomic, assign) JXAttributeTextAttachmentPos pos;
@@ -43,9 +49,30 @@ return self; \
     });
 }
 
+- (JXAttributeText * _Nonnull (^)(CGFloat, UIFontWeight))fontAndWeight {
+    kChainTwoParmsImplment(CGFloat size, UIFontWeight weight, {
+        [self.attributes setObject:[UIFont systemFontOfSize:size weight:weight] forKey:NSFontAttributeName];
+    });
+}
+
 - (JXAttributeText * _Nonnull (^)(UIColor * _Nonnull))color {
     kChainImplement(UIColor *color, {
         [self.attributes setObject:color forKey:NSForegroundColorAttributeName];
+    });
+}
+
+- (JXAttributeText * _Nonnull (^)(CGFloat))baselineOffset {
+    kChainImplement(CGFloat offset, {
+        [self.attributes setObject:@(offset) forKey:NSBaselineOffsetAttributeName];
+    });
+}
+
+- (JXAttributeText * _Nonnull (^)(CGFloat, NSTextAlignment))lineSpacing {
+    kChainTwoParmsImplment(CGFloat spacing, NSTextAlignment alignment, {
+        NSMutableParagraphStyle *mps = [NSMutableParagraphStyle new];
+        mps.lineSpacing = spacing;
+        mps.alignment = alignment;
+        [self.attributes setObject:mps forKey:NSParagraphStyleAttributeName];
     });
 }
 

@@ -14,6 +14,7 @@
 @property (nonatomic, strong) UILabel *labelOne;
 @property (nonatomic, strong) UILabel *labelTwo;
 @property (nonatomic, strong) UILabel *labelThree;
+@property (nonatomic, strong) UILabel *labelFour;
 
 @end
 
@@ -69,8 +70,17 @@
     }];
 }
 
-- (void)clickPhoneNumber:(NSString *)phone {
-    NSLog(@"tap tap => %@", phone);
+- (void)lineSpacingUsage {
+    [self.view addSubview:self.labelFour];
+    
+    [[self.labelFour.topAnchor constraintEqualToAnchor:self.labelThree.bottomAnchor constant:20] setActive:YES];
+    [[self.labelFour.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:20] setActive:YES];
+    [[self.labelFour.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor] setActive:YES];
+    
+    [self.labelFour jx_make:^(JXTextMaker * _Nonnull make) {
+        make.text(@"恭喜\n").fontAndWeight(16, UIFontWeightSemibold).color([UIColor blackColor]).lineSpacing(10, NSTextAlignmentLeft);
+        make.text(@"完成计划").font(18).color([UIColor grayColor]);
+    }];
 }
 
 - (void)viewDidLoad {
@@ -79,6 +89,12 @@
     [self basicUsage];
     [self tapUsage];
     [self attachmentUsage];
+    [self lineSpacingUsage];
+}
+
+#pragma mark - response methods
+- (void)clickPhoneNumber:(NSString *)phone {
+    NSLog(@"tap tap => %@", phone);
 }
 
 #pragma mark - getter and setter
@@ -106,5 +122,14 @@
         _labelThree.translatesAutoresizingMaskIntoConstraints = NO;
     }
     return _labelThree;
+}
+
+- (UILabel *)labelFour {
+    if (_labelFour == nil) {
+        _labelFour = [UILabel new];
+        _labelFour.translatesAutoresizingMaskIntoConstraints = NO;
+        _labelFour.numberOfLines = 0;
+    }
+    return _labelFour;
 }
 @end

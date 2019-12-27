@@ -20,7 +20,11 @@ typedef NS_ENUM(NSUInteger, JXAttributeTextAttachmentPos) {
 - (instancetype)initWithText:(NSString *)text icon:(nullable NSString *)icon;
 
 - (JXAttributeText * (^)(CGFloat fontSize))font;
+- (JXAttributeText * (^)(CGFloat fontSize, UIFontWeight weight))fontAndWeight;
 - (JXAttributeText * (^)(UIColor *textColor))color;
+- (JXAttributeText * (^)(CGFloat offset))baselineOffset;
+- (JXAttributeText * (^)(CGFloat spacing, NSTextAlignment alignment))lineSpacing;
+
 - (JXAttributeText * (^)(SEL selector))tap;
 - (JXAttributeText * (^)(CGFloat y))attachmentY;
 - (JXAttributeText * (^)(JXAttributeTextAttachmentPos pos))attachmentPos;
